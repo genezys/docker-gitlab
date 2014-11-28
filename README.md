@@ -27,6 +27,8 @@ Then run GitLab:
 
 You can then go to `http://localhost:8080/` (or most likely `http://192.168.59.103:8080/` if you use boot2docker). Next time, you can just use `docker start gitlab` and `docker stop gitlab`.
 
+To login, you can use the default GitLab credentials: username: `root`, password `5iveL!fe`.
+
 
 How to configure GitLab.
 ========================
