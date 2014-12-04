@@ -14,7 +14,7 @@ How to use this image
 I recommend creating a data volume container first, this will simplify migrations and backups:
 
 ```bash
-docker run --name gitlab_data genezys/gitlab:7.5.1 /bin/true
+docker run --name gitlab_data genezys/gitlab:7.5.2 /bin/true
 ```
 
 This empty container will exist to persist as volumes the 3 directories used by GitLab, so remember not to delete it:
@@ -26,10 +26,10 @@ This empty container will exist to persist as volumes the 3 directories used by 
 Then run GitLab:
 
 ```bash
-docker run --detach --name gitlab --publish 8080:80 --publish 2222:22 --volumes-from gitlab_data genezys/gitlab:7.5.1
+docker run --detach --name gitlab --publish 8080:80 --publish 2222:22 --volumes-from gitlab_data genezys/gitlab:7.5.2
 ```
 
-The first run will take a while as GitLab needs to configure itself.
+The first run will take a while as GitLab needs to configure itself. You can follow the process with `docker logs -f gitlab`.
 
 You can then go to `http://localhost:8080/` (or `http://192.168.59.103:8080/` if you use boot2docker). Next time, you can just use `docker start gitlab` and `docker stop gitlab`.
 
@@ -41,7 +41,7 @@ How to configure GitLab
 
 This container uses the official Omnibus GitLab distribution, so all configuration is done in the unique configuration file `/etc/gitlab/gitlab.rb`.
 
-To access GitLab configuration, you can start an interactive command line in a new container using the shared data volume container, you will be able to browse the 3 directories and use your text editor:
+To access GitLab configuration, you can start an interactive command line in a new container using the shared data volume container, you will be able to browse the 3 directories and use your favorite text editor:
 
 ```bash
 docker run -ti -e TERM=linux --rm --volumes-from gitlab_data ubuntu 

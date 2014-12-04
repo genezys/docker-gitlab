@@ -1,5 +1,5 @@
-# Data: docker run --name gitlab_data genezys/gitlab:7.5.1 /bin/true
-# Run:  docker run --detach --name gitlab --publish 8080:80 --publish 2222:22 --volumes-from gitlab_data genezys/gitlab:7.5.1
+# Data: docker run --name gitlab_data genezys/gitlab:7.5.2 /bin/true
+# Run:  docker run --detach --name gitlab --publish 8080:80 --publish 2222:22 --volumes-from gitlab_data genezys/gitlab:7.5.2
 
 FROM ubuntu:14.04
 MAINTAINER Vincent Robert <vincent.robert@genezys.net>
@@ -13,7 +13,7 @@ RUN apt-get update -q \
 
 # Download & Install GitLab
 RUN TMP_FILE=$(mktemp); \
-    wget -q -O $TMP_FILE https://downloads-packages.s3.amazonaws.com/ubuntu-14.04/gitlab_7.5.1-omnibus.5.2.0.ci-1_amd64.deb \
+    wget -q -O $TMP_FILE https://downloads-packages.s3.amazonaws.com/ubuntu-14.04/gitlab_7.5.2-omnibus.5.2.1.ci-1_amd64.deb \
     && dpkg -i $TMP_FILE \
     && rm -f $TMP_FILE
 
@@ -33,4 +33,4 @@ VOLUME ["/var/opt/gitlab", "/var/log/gitlab", "/etc/gitlab"]
 ADD gitlab.rb /etc/gitlab/
 
 # Default is to run runit & reconfigure
-CMD gitlab-ctl reconfigure > /var/log/gitlab/reconfigure.log & /opt/gitlab/embedded/bin/runsvdir-start
+CMD gitlab-ctl reconfigure & /opt/gitlab/embedded/bin/runsvdir-start
