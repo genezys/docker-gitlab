@@ -4,9 +4,11 @@
 # even if you intend to use another port in Docker.
 external_url "http://192.168.59.103/"
 
-# PosgreSQL will try to allocate 25% of all memory
-# which might not work well in some Docker configurations
-postgresql['shared_buffers'] = "1MB"
+# Prevent Postgres from trying to allocate 25% of total memory
+postgresql['shared_buffers'] = '1MB'
+
+# Configure GitLab to redirect PostgreSQL logs to the data volume
+postgresql['log_directory'] = '/var/log/gitlab/postgresql'
 
 # Some configuration of GitLab
 # You can find more at https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/README.md#configuration

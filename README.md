@@ -11,40 +11,40 @@ GitLab offers git repository management, code reviews, issue tracking, activity 
 How to use this image
 =====================
 
-I recommend creating a data volume container first, this will simplify migrations and backups:
+We assume using a data volume container, this will simplify migrations and backups. This empty container will exist to persist as volumes the 3 directories used by GitLab, so remember not to delete it.
 
-```bash
-docker run --name gitlab_data genezys/gitlab:7.5.2 /bin/true
-```
-
-This empty container will exist to persist as volumes the 3 directories used by GitLab, so remember not to delete it:
+The directories on data container are:
 
 - `/var/opt/gitlab` for application data
 - `/var/log/gitlab` for logs
 - `/etc/gitlab` for configuration
 
-Then run GitLab:
+Create the data container with:
 
 ```bash
-docker run --detach --name gitlab --publish 8080:80 --publish 2222:22 --volumes-from gitlab_data genezys/gitlab:7.5.2
+sudo docker run --name gitlab_data genezys/gitlab:7.5.3 /bin/true
 ```
 
-The first run will take a while as GitLab needs to configure itself. You can follow the process with `docker logs -f gitlab`.
+After creating this, run GitLab:
 
-You can then go to `http://localhost:8080/` (or `http://192.168.59.103:8080/` if you use boot2docker). Next time, you can just use `docker start gitlab` and `docker stop gitlab`.
+```bash
+sudo docker run --detach --name gitlab_app --publish 8080:80 --publish 2222:22 --volumes-from gitlab_data genezys/gitlab:7.5.3
+```
 
-To login, you can use the default GitLab credentials: username `root`, password `5iveL!fe`.
+It might take a while before the docker container is responding to queries. You can follow the configuration process with `docker logs -f gitlab_app`.
+
+You can then go to `http://localhost:8080/` (or `http://192.168.59.103:8080/` if you use boot2docker). You can login with username `root` and password `5iveL!fe`. Next time, you can just use `sudo docker start gitlab_app` and `sudo docker stop gitlab_app`.
 
 
 How to configure GitLab
-=======================
+========================
 
 This container uses the official Omnibus GitLab distribution, so all configuration is done in the unique configuration file `/etc/gitlab/gitlab.rb`.
 
 To access GitLab configuration, you can start an interactive command line in a new container using the shared data volume container, you will be able to browse the 3 directories and use your favorite text editor:
 
 ```bash
-docker run -ti -e TERM=linux --rm --volumes-from gitlab_data ubuntu 
+docker run -ti -e TERM=linux --rm --volumes-from gitlab_data ubuntu
 vi /etc/gitlab/gitlab.rb
 ```
 
