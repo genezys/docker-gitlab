@@ -28,7 +28,7 @@ sudo docker run --name gitlab_data ubuntu:14.04 /bin/true
 After creating this, run GitLab:
 
 ```bash
-sudo docker run --detach --name gitlab_app --publish 8080:80 --publish 2222:22 --volumes-from gitlab_data genezys/gitlab:7.6.2
+sudo docker run --detach --name gitlab_app --publish 8080:80 --publish 2222:22 --volumes-from gitlab_data genezys/gitlab:7.7.1
 ```
 
 It might take a while before the docker container is responding to queries. You can follow the configuration process with `docker logs -f gitlab_app`.
