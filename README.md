@@ -1,11 +1,15 @@
 What is GitLab?
 ===============
 
-GitLab offers git repository management, code reviews, issue tracking, activity feeds, wikis. It has LDAP/AD integration, handles 25,000 users on a single server but can also run on a highly available active/active cluster. A subscription gives you access to our support team and to GitLab Enterprise Edition that contains extra features aimed at larger organizations.
+Version Control on your Server  
+like GitHub but Open Source
+
+- Git repository management, code reviews, issue tracking, activity feeds, wikis and continuous integration
+- 25,000 users on one server or a highly available active/active cluster, LDAP/AD group sync and audit logging
+- Community driven, 700+ contributors, inspect and modify the source, easy to integrate into your infrastructure
+- GitLab runs on your own servers, if you want to use it without installing, see our [free GitLab.com service](https://about.gitlab.com/gitlab-com)
 
 <https://about.gitlab.com>
-
-![GitLab Logo](https://gitlab.com/uploads/appearance/logo/1/brand_logo-c37eb221b456bb4b472cc1084480991f.png)
 
 
 How to use this image
