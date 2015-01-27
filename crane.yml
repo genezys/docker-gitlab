@@ -1,0 +1,21 @@
+containers:
+  gitlab_data:
+    image: ubuntu:14.04
+    run:
+      cmd: ["/bin/true"]
+  gitlab_app:
+    image: genezys/gitlab:7.7.1
+    dockerfile: .
+    run:
+      detach: true
+      publish:
+      - "8080:80"
+      - "2222:22"
+      volumes-from:
+      - gitlab_data
+groups:
+  default:
+  - gitlab_app
+  all:
+  - gitlab_data
+  - gitlab_app
