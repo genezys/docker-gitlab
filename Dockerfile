@@ -1,5 +1,5 @@
 # Data: docker run --name gitlab_data ubuntu:14.04 /bin/true
-# Run:  docker run --detach --name gitlab --publish 8080:80 --publish 2222:22 --volumes-from gitlab_data genezys/gitlab:7.7.1
+# Run:  docker run --detach --name gitlab --publish 8080:80 --publish 2222:22 --volumes-from gitlab_data genezys/gitlab:7.7.2
 
 FROM ubuntu:14.04
 MAINTAINER Vincent Robert <vincent.robert@genezys.net>
@@ -15,7 +15,7 @@ RUN apt-get update -q \
 # If the Omnibus package version below is outdated please contribute a merge request to update it.
 # If you run GitLab Enterprise Edition point it to a location where you have downloaded it.
 RUN TMP_FILE=$(mktemp); \
-    wget -q -O $TMP_FILE https://downloads-packages.s3.amazonaws.com/ubuntu-14.04/gitlab_7.7.1-omnibus.5.4.1.ci-1_amd64.deb \
+    wget -q -O $TMP_FILE https://downloads-packages.s3.amazonaws.com/ubuntu-14.04/gitlab_7.7.2-omnibus.5.4.2.ci-1_amd64.deb \
     && dpkg -i $TMP_FILE \
     && rm -f $TMP_FILE
 

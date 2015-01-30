@@ -4,7 +4,7 @@ containers:
     run:
       cmd: ["/bin/true"]
   gitlab_app:
-    image: genezys/gitlab:7.7.1
+    image: genezys/gitlab:7.7.2
     dockerfile: .
     run:
       detach: true
