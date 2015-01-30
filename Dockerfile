@@ -1,4 +1,4 @@
-# Data: docker run --name gitlab_data ubuntu:14.04 /bin/true
+# Data: docker run --name gitlab_data --volume /var/opt/gitlab --volume /var/log/gitlab --volume /etc/gitlab ubuntu:14.04 /bin/true
 # Run:  docker run --detach --name gitlab --publish 8080:80 --publish 2222:22 --volumes-from gitlab_data genezys/gitlab:7.7.2
 
 FROM ubuntu:14.04

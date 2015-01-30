@@ -26,7 +26,7 @@ The directories on data container are:
 Create the data container with:
 
 ```bash
-sudo docker run --name gitlab_data ubuntu:14.04 /bin/true
+sudo docker run --name gitlab_data --volume /var/opt/gitlab --volume /var/log/gitlab --volume /etc/gitlab ubuntu:14.04 /bin/true
 ```
 
 After creating this, run GitLab:
