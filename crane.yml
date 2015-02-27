@@ -7,8 +7,9 @@ containers:
       - "/var/opt/gitlab"
       - "/var/log/gitlab"
       - "/etc/gitlab"
+
   gitlab_app:
-    image: genezys/gitlab:7.7.2
+    image: genezys/gitlab:7.8.1
     dockerfile: .
     run:
       detach: true
@@ -17,8 +18,9 @@ containers:
       - "2222:22"
       volumes-from:
       - gitlab_data
+
   gitlab_debug:
-    image: genezys/gitlab:7.7.2
+    image: genezys/gitlab:7.8.1
     run:
       rm: true
       tty: true
@@ -26,6 +28,7 @@ containers:
       cmd: ["/bin/bash"]
       volumes-from:
       - gitlab_data
+
 groups:
   default:
   - gitlab_app
