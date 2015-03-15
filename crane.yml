@@ -9,7 +9,7 @@ containers:
       - "/etc/gitlab"
 
   gitlab_app:
-    image: genezys/gitlab:7.8.1
+    image: genezys/gitlab:7.8.4
     dockerfile: .
     run:
       detach: true
@@ -20,7 +20,7 @@ containers:
       - gitlab_data
 
   gitlab_debug:
-    image: genezys/gitlab:7.8.1
+    image: genezys/gitlab:7.8.4
     run:
       rm: true
       tty: true
