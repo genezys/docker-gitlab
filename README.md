@@ -26,18 +26,30 @@ The directories on data container are:
 Create the data container with:
 
 ```bash
-sudo docker run --name gitlab_data --volume /var/opt/gitlab --volume /var/log/gitlab --volume /etc/gitlab ubuntu:14.04 /bin/true
+sudo docker run --name gitlab_data --volume /var/opt/gitlab --volume /var/log/gitlab --volume /etc/gitlab genezys/gitlab:7.10.4 /bin/true
 ```
 
 After creating this, run GitLab:
 
 ```bash
-sudo docker run --detach --name gitlab_app --publish 8080:80 --publish 2222:22 --volumes-from gitlab_data genezys/gitlab:7.8.4
+sudo docker run --detach --name gitlab_app --publish 8080:80 --publish 2222:22 --volumes-from gitlab_data genezys/gitlab:7.10.4
 ```
 
 It might take a while before the docker container is responding to queries. You can follow the configuration process with `docker logs -f gitlab_app`.
 
 You can then go to `http://localhost:8080/` (or `http://192.168.59.103:8080/` if you use boot2docker). You can login with username `root` and password `5iveL!fe`. Next time, you can just use `sudo docker start gitlab_app` and `sudo docker stop gitlab_app`.
+
+
+Using Docker Compose
+====================
+
+You can download the `docker-compose.yml` file directly from the project repository. It will create a `data` container with the 3 volumes and an `app` container using the volumes of `data`.
+
+To start the application using its default configuration, just run:
+
+```bash
+docker-compose up -d
+```
 
 
 How to configure GitLab

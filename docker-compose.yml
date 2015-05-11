@@ -1,0 +1,14 @@
+data:
+  build: .
+  entrypoint: ["/bin/true"]
+  volumes:
+  - "/var/opt/gitlab"
+  - "/var/log/gitlab"
+  - "/etc/gitlab"
+app:
+  build: .
+  ports:
+  - "8080:80"
+  - "2222:22"
+  volumes_from:
+  - data
