@@ -8,7 +8,7 @@ RUN apt-get install -qy --no-install-recommends \
       curl \
     && curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh | bash \
     && apt-get install -qy --no-install-recommends \
-      gitlab-ce
+      gitlab-ce=7.10.4~omnibus.1-1
 
 # Manage SSHD through runit
 RUN mkdir -p /opt/gitlab/sv/sshd/supervise \
